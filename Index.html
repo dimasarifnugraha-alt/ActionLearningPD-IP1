@@ -4,376 +4,485 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Misi 1 EDS - Roadmap Kendali Diri</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons for Gamified Design -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* ==========================================================================
+           CSS INTERNAL PREMIUM - GABUNGAN DESIGN DARK MODE (100% OFFLINE & FIXED)
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #020617;
+            color: #f1f5f9;
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
         }
-        .glow-effect:hover {
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+
+        .app-container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #0f172a;
+            border-radius: 20px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            padding: 24px;
+            border: 1px solid #1e293b;
         }
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
+
+        /* Header Area */
+        .main-header {
+            border-bottom: 1px solid #334155;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+        }
+
+        .badge-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .badge-eds {
+            background-color: rgba(14, 165, 233, 0.15);
+            color: #38bdf8;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .badge-misi {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .main-header h1 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .main-header .sub-info {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+
+        /* Banner Instruksi */
+        .instruction-banner {
+            background-color: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #cbd5e1;
+        }
+
+        .instruction-banner b {
+            color: #38bdf8;
+        }
+
+        /* Progress Dashboard */
+        .progress-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .progress-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        /* Track Peta Jalan */
+        .roadmap-track {
+            height: 8px;
+            background-color: #0f172a;
+            border-radius: 9999px;
+            position: relative;
+            margin: 15px 0;
+            border: 1px solid #334155;
+        }
+
+        .roadmap-fill {
+            height: 100%;
+            background: linear-gradient(to right, #38bdf8, #34d399);
+            border-radius: 9999px;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .agent-node {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 28px;
+            height: 28px;
+            background-color: #38bdf8;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+            transition: left 0.4s ease;
+            z-index: 10;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-cols: 2;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            border-top: 1px solid #334155;
+            padding-top: 12px;
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        .stat-val { font-size: 20px; font-weight: 800; color: #ffffff; }
+        .stat-lbl { font-size: 11px; color: #94a3b8; text-transform: uppercase; }
+
+        /* Lencana Lencana */
+        .badges-section {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .badges-section h3 { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: #ffffff;}
+
+        .badge-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgba(15, 23, 42, 0.4);
+            margin-bottom: 8px;
+            border: 1px solid transparent;
+            opacity: 0.4;
+            transition: all 0.3s;
+        }
+
+        .badge-item.unlocked {
+            opacity: 1;
+            border-color: rgba(56, 189, 248, 0.3);
+            background-color: rgba(14, 165, 233, 0.05);
+        }
+
+        .badge-icon {
+            width: 36px;
+            height: 36px;
+            background-color: #0f172a;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .badge-info p { font-size: 13px; font-weight: 700; color: #f1f5f9; }
+        .badge-info span { font-size: 11px; color: #94a3b8; }
+
+        /* Tab Hari */
+        .tabs-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            color: #94a3b8;
+            padding: 10px 4px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background-color: #0284c7;
+            color: #ffffff;
+            border-color: #38bdf8;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+        }
+
+        .day-dot {
+            display: block;
             width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #475569;
+            margin: 4px auto 0 auto;
         }
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
+
+        /* Misi Checklist Card */
+        .misi-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 24px;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 3px;
+
+        .misi-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 10px;
+            margin-bottom: 16px;
         }
-        /* Roadmap dash styling */
-        .roadmap-dash {
-            background-image: linear-gradient(to right, #38bdf8 50%, transparent 50%);
-            background-size: 14px 100%;
+
+        .sector-title {
+            font-size: 12px;
+            font-weight: 800;
+            color: #38bdf8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 14px 0 8px 0;
         }
+        .sector-title.emerald { color: #34d399; }
+
+        .checklist-row {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px;
+            background-color: rgba(15, 23, 42, 0.3);
+            border: 1px solid #334155;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .checklist-row:hover { background-color: rgba(15, 23, 42, 0.6); }
+
+        .checklist-row input { position: absolute; opacity: 0; }
+
+        .box-indicator {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #64748b;
+            border-radius: 4px;
+            margin-right: 12px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .checklist-row input:checked ~ .box-indicator {
+            background-color: #0284c7;
+            border-color: #38bdf8;
+        }
+        
+        .checklist-row.emerald-row input:checked ~ .box-indicator {
+            background-color: #059669;
+            border-color: #34d399;
+        }
+
+        .box-indicator:after {
+            content: "✓";
+            position: absolute;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            top: -2px;
+            left: 2px;
+            display: none;
+        }
+
+        .checklist-row input:checked ~ .box-indicator:after { display: block; }
+
+        .item-text { font-size: 13px; color: #cbd5e1; line-height: 1.4; }
+        .checklist-row input:checked ~ .item-text { color: #64748b; text-decoration: line-through; }
+
+        /* Footer & Buttons */
+        .footer-actions { display: flex; gap: 10px; margin-top: 20px; }
+        .btn {
+            flex: 1; padding: 12px; font-size: 13px; font-weight: 700; border-radius: 10px;
+            border: none; cursor: pointer; text-align: center; text-transform: uppercase;
+        }
+        .btn-reset { background-color: #334155; color: #94a3b8; }
+        .btn-reset:hover { background-color: #475569; color: white; }
+        .btn-save { background-color: #0284c7; color: white; }
+        .btn-save:hover { background-color: #0369a1; }
+
+        .copyright { text-align: center; margin-top: 24px; font-size: 11px; color: #64748b; border-top: 1px solid #334155; padding-top: 12px; }
+
+        /* Modal Kustom */
+        .modal-bg { position: fixed; inset: 0; background-color: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s; z-index: 100; padding: 16px;}
+        .modal-bg.show { opacity: 1; pointer-events: auto; }
+        .modal-content { background-color: #1e293b; border: 1px solid #334155; padding: 20px; border-radius: 16px; max-width: 360px; text-align: center; }
+
+        /* Toast */
+        .toast-box { position: fixed; bottom: 20px; left: 50%; transform: translate(-50%, 100px); background-color: #1e293b; border: 1px solid #334155; padding: 10px 20px; rounded: 8px; font-size: 12px; font-weight: 700; color: #38bdf8; border-radius: 8px; transition: 0.3s; opacity: 0; z-index: 200; }
+        .toast-box.show { transform: translate(-50%, 0); opacity: 1; }
     </style>
 </head>
-<body class="bg-[#020617] text-slate-100 min-h-screen pb-12">
+<body>
 
-    <!-- Custom Toast Notification System -->
-    <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
-
-    <!-- Custom Modal System (Replacement for browser confirm) -->
-    <div id="custom-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
-        <div class="bg-slate-900 border border-slate-700 p-6 rounded-2xl max-w-sm w-full shadow-2xl transform scale-90 transition-all duration-300">
-            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-red-500/10 text-red-400 mx-auto mb-4">
-                <i class="fa-solid fa-triangle-exclamation text-xl"></i>
-            </div>
-            <h3 class="text-lg font-bold text-center text-white mb-2">Reset Peta Jalan Misi?</h3>
-            <p class="text-sm text-slate-400 text-center mb-6">Apakah Anda yakin ingin menghapus semua catatan pencapaian praktik lapangan minggu ini?</p>
-            <div class="flex gap-3">
-                <button onclick="closeModal()" class="flex-1 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold rounded-xl transition-colors">Batal</button>
-                <button onclick="confirmReset()" class="flex-1 py-3 bg-red-600 hover:bg-red-500 text-white font-bold rounded-xl transition-colors">Ya, Reset</button>
+    <div id="reset-modal" class="modal-bg">
+        <div class="modal-content">
+            <p style="font-size: 16px; font-weight: 800; margin-bottom: 8px;">Reset Peta Jalan Misi?</p>
+            <p style="font-size: 13px; color: #94a3b8; margin-bottom: 20px;">Apakah Anda yakin ingin menghapus catatan kemajuan latihan kompetensi minggu ini?</p>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="closeModal()" class="btn btn-reset" style="padding: 8px;">Batal</button>
+                <button onclick="confirmReset()" class="btn" style="background-color: #ef4444; color: white; padding: 8px;">Ya, Reset</button>
             </div>
         </div>
     </div>
 
-    <div class="max-w-5xl mx-auto px-4 pt-8">
-        
-        <!-- HEADER PROFILE & TITLE (EDS BRANDING) -->
-        <header class="bg-gradient-to-r from-slate-900 via-sky-950 to-slate-900 p-6 rounded-2xl border border-sky-500/30 mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-xl relative overflow-hidden">
-            <!-- Background Graphic -->
-            <div class="absolute right-0 top-0 opacity-10 pointer-events-none transform translate-x-4 -translate-y-4">
-                <i class="fa-solid fa-route text-9xl text-sky-300"></i>
-            </div>
+    <div id="toast-alert" class="toast-box">Progres lapangan berhasil diperbarui!</div>
 
-            <div class="z-10">
-                <div class="flex items-center gap-3">
-                    <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-3 py-1 rounded-full border border-sky-500/30 uppercase tracking-widest">Employee Development Series (EDS)</span>
-                    <span class="bg-emerald-500/10 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-emerald-500/30 uppercase tracking-widest">Misi 1</span>
-                </div>
-                <h1 class="text-2xl md:text-3xl font-extrabold mt-2 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-sky-300">
-                    Peta Jalan (Roadmap) Kendali Diri
-                </h1>
-                <p class="text-slate-400 text-sm mt-1">Kompetensi: Pengendalian Diri — "Menyadari dan menanggapi situasi biasa tanpa menunjukkan emosi berlebihan"</p>
+    <div class="app-container">
+        
+        <header class="main-header">
+            <div class="badge-row">
+                <span class="badge-eds">Employee Development Series (EDS)</span>
+                <span class="badge-misi">Misi 1</span>
             </div>
-            <div class="flex items-center gap-4 bg-slate-800/60 p-3 rounded-xl border border-slate-700/50 w-full md:w-auto z-10 backdrop-blur-sm">
-                <div class="bg-sky-600 w-10 h-10 rounded-lg flex items-center justify-center text-white shadow-lg">
-                    <i class="fa-solid fa-user-tag text-lg"></i>
-                </div>
-                <div>
-                    <p class="text-xs text-sky-300 font-semibold uppercase tracking-wider">Target Jabatan</p>
-                    <p class="text-sm font-bold text-slate-100">Clerk / Sr. Clerk</p>
-                </div>
-            </div>
+            <h1>Peta Jalan Kendali Diri</h1>
+            <p class="sub-info"><b>Kompetensi: Pengendalian Diri</b> — "Menyadari dan menanggapi situasi biasa tanpa menunjukkan emosi berlebihan"</p>
         </header>
 
-        <!-- ACTION LEARNING INSTRUCTION BANNER -->
-        <div class="bg-sky-900/30 border border-sky-500/40 p-4 rounded-xl flex items-start gap-4 mb-8 shadow-lg shadow-sky-900/10 backdrop-blur-sm">
-            <div class="bg-sky-500/20 w-8 h-8 rounded-full flex items-center justify-center text-sky-400 shrink-0 mt-0.5">
-                <i class="fa-solid fa-bullhorn text-sm"></i>
-            </div>
-            <div>
-                <h4 class="text-sm font-bold text-sky-300 uppercase tracking-widest mb-1">Petunjuk Action Learning (Tugas Lapangan)</h4>
-                <p class="text-sm text-slate-300 leading-relaxed">
-                    Ini bukan sekadar tes teori. Misi ini dirancang untuk mengubah kebiasaan Anda. Centang tugas di bawah ini <b>HANYA JIKA</b> Anda telah benar-benar mempraktikkannya secara nyata saat berinteraksi dengan pelanggan, rekan kerja, atau saat menghadapi kendala operasional di toko/kantor hari ini.
-                </p>
-            </div>
+        <div class="instruction-banner">
+            💡 <b>Petunjuk Action Learning (Praktek Lapangan):</b><br>
+            Centang tugas harian di bawah ini <u>HANYA JIKA</u> Anda telah benar-benar berhasil mempraktikkannya secara nyata saat beroperasi di toko atau kantor hari ini.
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="progress-card">
+            <div class="progress-meta">
+                <span id="rank-title" style="color: #38bdf8;">Pra-Misi (Belum Mulai)</span>
+                <span id="percent-txt">0%</span>
+            </div>
             
-            <!-- LEFT COLUMN: STATUS & GAMIFICATION BADGES -->
-            <div class="lg:col-span-1 flex flex-col gap-6">
-                
-                <!-- MISSION ROADMAP PROGRESS CARD -->
-                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-700 shadow-md relative">
-                    <h2 class="text-lg font-bold mb-5 flex items-center gap-2">
-                        <i class="fa-solid fa-map-location-dot text-sky-500"></i> Pantauan Misi
-                    </h2>
-                    
-                    <div class="flex flex-col gap-1 mb-4">
-                        <div class="flex justify-between text-sm font-semibold text-slate-400">
-                            <span id="rank-title" class="text-sky-400 transition-colors duration-300">Pra-Misi (Belum Mulai)</span>
-                            <span id="overall-percentage" class="font-extrabold text-white">0%</span>
-                        </div>
-                    </div>
-
-                    <!-- Interactive Mission Roadmap Track -->
-                    <div class="relative w-full h-10 mb-6 flex items-center">
-                        <!-- Background Dashed Track -->
-                        <div class="absolute left-0 right-0 h-1 roadmap-dash opacity-30"></div>
-                        <!-- Filled Track Progress -->
-                        <div id="overall-progress-bar" class="absolute left-0 h-1.5 bg-gradient-to-r from-sky-500 to-emerald-400 transition-all duration-500 rounded-full" style="width: 0%"></div>
-                        
-                        <!-- Checkpoint Nodes -->
-                        <div class="absolute left-[0%] w-2 h-2 rounded-full bg-slate-600 border border-slate-400"></div>
-                        <div class="absolute left-[33%] w-2 h-2 rounded-full bg-slate-600 border border-slate-400" id="node-1"></div>
-                        <div class="absolute left-[66%] w-2 h-2 rounded-full bg-slate-600 border border-slate-400" id="node-2"></div>
-                        <div class="absolute right-0 w-3 h-3 rounded-full bg-slate-600 border-2 border-slate-400" id="node-3"></div>
-
-                        <!-- Smooth Agent Avatar Node -->
-                        <div id="agent-avatar" class="absolute w-8 h-8 rounded-full bg-sky-500 border-2 border-white flex items-center justify-center text-white shadow-[0_0_10px_rgba(56,189,248,0.8)] font-black transition-all duration-500 z-10 -translate-x-1/2" style="left: 0%;">
-                            <i class="fa-solid fa-shield-halved text-xs"></i>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4 pt-5 border-t border-slate-800 text-center">
-                        <div>
-                            <p class="text-2xl font-extrabold text-white" id="total-checked-count">0/25</p>
-                            <p class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Tugas Selesai</p>
-                        </div>
-                        <div>
-                            <p class="text-2xl font-extrabold text-sky-400" id="current-streak">0 Hari</p>
-                            <p class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Target 100%</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- BADGES UNLOCKED (GAMIFIED MEDALS) -->
-                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-700 shadow-md flex-1">
-                    <h2 class="text-lg font-bold mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-medal text-amber-500"></i> Lencana Pencapaian
-                    </h2>
-                    <div class="grid grid-cols-1 gap-4">
-                        
-                        <!-- Badge 1: Radar Emosi -->
-                        <div id="badge-radar" class="flex items-center gap-4 p-3 rounded-xl bg-slate-800/30 border border-slate-700 opacity-40 transition-all duration-300">
-                            <div class="w-12 h-12 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 shadow-inner">
-                                <i class="fa-solid fa-satellite-dish text-xl"></i>
-                            </div>
-                            <div class="flex-1">
-                                <p class="text-sm font-bold text-slate-200">Radar Emosi Aktif</p>
-                                <p class="text-xs text-slate-400">Konsisten sadar fisik & napas 3x</p>
-                            </div>
-                        </div>
-
-                        <!-- Badge 2: Tangan Dingin -->
-                        <div id="badge-tangandingin" class="flex items-center gap-4 p-3 rounded-xl bg-slate-800/30 border border-slate-700 opacity-40 transition-all duration-300">
-                            <div class="w-12 h-12 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shadow-inner">
-                                <i class="fa-solid fa-hand-sparkles text-xl"></i>
-                            </div>
-                            <div class="flex-1">
-                                <p class="text-sm font-bold text-slate-200">Agen Tangan Dingin</p>
-                                <p class="text-xs text-slate-400">Zero-accident kasar secara fisik</p>
-                            </div>
-                        </div>
-
-                        <!-- Badge 3: Master 3 Detik -->
-                        <div id="badge-zenmaster" class="flex items-center gap-4 p-3 rounded-xl bg-slate-800/30 border border-slate-700 opacity-40 transition-all duration-300">
-                            <div class="w-12 h-12 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 shadow-inner">
-                                <i class="fa-solid fa-stopwatch text-xl"></i>
-                            </div>
-                            <div class="flex-1">
-                                <p class="text-sm font-bold text-slate-200">Master 3 Detik</p>
-                                <p class="text-xs text-slate-400">Disiplin rumus 3S & respons tenang</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
+            <div class="roadmap-track">
+                <div id="roadmap-fill" class="roadmap-fill"></div>
+                <div id="avatar-node" class="agent-node" style="left: 0%;">🕵️</div>
             </div>
 
-            <!-- RIGHT COLUMN: INTERACTIVE WEEKLY MISSION BOARD -->
-            <div class="lg:col-span-2 flex flex-col gap-6">
-                
-                <!-- WEEKDAY TABS -->
-                <div class="bg-slate-900 p-4 rounded-2xl border border-slate-700 shadow-md">
-                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">Pilih Hari Pemantauan</p>
-                    <div class="grid grid-cols-5 gap-2">
-                        <button onclick="switchDay('Senin')" id="tab-Senin" class="py-3 px-1 text-center font-bold text-sm rounded-xl transition-all duration-200 bg-sky-600 text-white shadow-[0_4px_12px_rgba(2,132,199,0.3)] border border-sky-500">
-                            Senin
-                            <span id="dot-Senin" class="block mx-auto mt-1 w-2 h-2 rounded-full bg-slate-400/50"></span>
-                        </button>
-                        <button onclick="switchDay('Selasa')" id="tab-Selasa" class="py-3 px-1 text-center font-bold text-sm rounded-xl transition-all duration-200 bg-slate-800 text-slate-400 hover:bg-slate-700/80 border border-transparent">
-                            Selasa
-                            <span id="dot-Selasa" class="block mx-auto mt-1 w-2 h-2 rounded-full bg-slate-400/50"></span>
-                        </button>
-                        <button onclick="switchDay('Rabu')" id="tab-Rabu" class="py-3 px-1 text-center font-bold text-sm rounded-xl transition-all duration-200 bg-slate-800 text-slate-400 hover:bg-slate-700/80 border border-transparent">
-                            Rabu
-                            <span id="dot-Rabu" class="block mx-auto mt-1 w-2 h-2 rounded-full bg-slate-400/50"></span>
-                        </button>
-                        <button onclick="switchDay('Kamis')" id="tab-Kamis" class="py-3 px-1 text-center font-bold text-sm rounded-xl transition-all duration-200 bg-slate-800 text-slate-400 hover:bg-slate-700/80 border border-transparent">
-                            Kamis
-                            <span id="dot-Kamis" class="block mx-auto mt-1 w-2 h-2 rounded-full bg-slate-400/50"></span>
-                        </button>
-                        <button onclick="switchDay('Jumat')" id="tab-Jumat" class="py-3 px-1 text-center font-bold text-sm rounded-xl transition-all duration-200 bg-slate-800 text-slate-400 hover:bg-slate-700/80 border border-transparent">
-                            Jumat
-                            <span id="dot-Jumat" class="block mx-auto mt-1 w-2 h-2 rounded-full bg-slate-400/50"></span>
-                        </button>
-                    </div>
+            <div class="stats-grid">
+                <div>
+                    <p class="stat-val" id="total-checked">0/25</p>
+                    <p class="stat-lbl">Misi Beres</p>
                 </div>
-
-                <!-- CHECKLIST CARD -->
-                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-700 shadow-md">
-                    <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-800">
-                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                            <i class="fa-regular fa-calendar-check text-sky-500"></i>
-                            Tugas Harian: <span id="active-day-title" class="text-sky-400">Senin</span>
-                        </h3>
-                        <span id="day-completion-rate" class="bg-slate-800 px-3 py-1 text-xs font-bold rounded-lg text-slate-300 border border-slate-600">0% Selesai</span>
-                    </div>
-
-                    <!-- SEKTOR 1 (IP 1.1) -->
-                    <div class="mb-8">
-                        <h4 class="text-xs font-extrabold text-sky-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-                            <span class="w-2 h-2 bg-sky-500 rounded-sm transform rotate-45"></span>
-                            Sektor 1: Meredam Efek Domino (IP 1.1)
-                        </h4>
-                        <div class="flex flex-col gap-3">
-                            
-                            <!-- ITEM 1.1 -->
-                            <label class="group flex items-start gap-4 p-4 rounded-xl bg-slate-800/40 border border-slate-700 cursor-pointer hover:bg-slate-800 hover:border-sky-500/50 transition-all duration-200 glow-effect">
-                                <div class="relative flex items-center mt-0.5">
-                                    <input type="checkbox" id="check-1-1" class="peer sr-only" onchange="toggleTask('1.1')">
-                                    <div class="w-6 h-6 border-2 border-slate-500 rounded-md bg-slate-900 peer-checked:bg-sky-500 peer-checked:border-sky-400 flex items-center justify-center transition-all duration-200 shadow-inner">
-                                        <i class="fa-solid fa-check text-xs text-white opacity-0 peer-checked:opacity-100 transition-opacity duration-200"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-[10px] font-extrabold px-1.5 py-0.5 bg-slate-800 text-sky-400 rounded border border-slate-700 uppercase tracking-wider">Aksi 1.1</span>
-                                    </div>
-                                    <p class="text-sm text-slate-300 font-medium mt-1.5 group-hover:text-white leading-relaxed">
-                                        Saya mengenali tanda fisik tubuh saat emosi negatif muncul (seperti napas memburu atau otot menegang) ketika menghadapi kendala operasional atau pelanggan.
-                                    </p>
-                                </div>
-                            </label>
-
-                            <!-- ITEM 1.2 -->
-                            <label class="group flex items-start gap-4 p-4 rounded-xl bg-slate-800/40 border border-slate-700 cursor-pointer hover:bg-slate-800 hover:border-sky-500/50 transition-all duration-200 glow-effect">
-                                <div class="relative flex items-center mt-0.5">
-                                    <input type="checkbox" id="check-1-2" class="peer sr-only" onchange="toggleTask('1.2')">
-                                    <div class="w-6 h-6 border-2 border-slate-500 rounded-md bg-slate-900 peer-checked:bg-sky-500 peer-checked:border-sky-400 flex items-center justify-center transition-all duration-200 shadow-inner">
-                                        <i class="fa-solid fa-check text-xs text-white opacity-0 peer-checked:opacity-100 transition-opacity duration-200"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-[10px] font-extrabold px-1.5 py-0.5 bg-slate-800 text-sky-400 rounded border border-slate-700 uppercase tracking-wider">Aksi 1.2</span>
-                                    </div>
-                                    <p class="text-sm text-slate-300 font-medium mt-1.5 group-hover:text-white leading-relaxed">
-                                        Saya berhasil menahan diri dari tindakan fisik yang reaktif atau kasar (seperti meletakkan barang dengan keras atau menghela napas kasar) saat merasa kesal.
-                                    </p>
-                                </div>
-                            </label>
-
-                            <!-- ITEM 1.3 -->
-                            <label class="group flex items-start gap-4 p-4 rounded-xl bg-slate-800/40 border border-slate-700 cursor-pointer hover:bg-slate-800 hover:border-sky-500/50 transition-all duration-200 glow-effect">
-                                <div class="relative flex items-center mt-0.5">
-                                    <input type="checkbox" id="check-1-3" class="peer sr-only" onchange="toggleTask('1.3')">
-                                    <div class="w-6 h-6 border-2 border-slate-500 rounded-md bg-slate-900 peer-checked:bg-sky-500 peer-checked:border-sky-400 flex items-center justify-center transition-all duration-200 shadow-inner">
-                                        <i class="fa-solid fa-check text-xs text-white opacity-0 peer-checked:opacity-100 transition-opacity duration-200"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-[10px] font-extrabold px-1.5 py-0.5 bg-slate-800 text-sky-400 rounded border border-slate-700 uppercase tracking-wider">Aksi 1.3</span>
-                                    </div>
-                                    <p class="text-sm text-slate-300 font-medium mt-1.5 group-hover:text-white leading-relaxed">
-                                        Saya mempraktikkan teknik "Jeda Napas" (menarik napas dalam-dalam sebanyak 3 kali) sebelum merespons rekan kerja atau pelanggan saat suasana tegang.
-                                    </p>
-                                </div>
-                            </label>
-
-                        </div>
-                    </div>
-
-                    <!-- SEKTOR 2 (IP 1.2) -->
-                    <div>
-                        <h4 class="text-xs font-extrabold text-sky-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-                            <span class="w-2 h-2 bg-sky-500 rounded-sm transform rotate-45"></span>
-                            Sektor 2: Jeda 3 Detik (IP 1.2)
-                        </h4>
-                        <div class="flex flex-col gap-3">
-                            
-                            <!-- ITEM 2.1 -->
-                            <label class="group flex items-start gap-4 p-4 rounded-xl bg-slate-800/40 border border-slate-700 cursor-pointer hover:bg-slate-800 hover:border-emerald-500/50 transition-all duration-200 glow-effect">
-                                <div class="relative flex items-center mt-0.5">
-                                    <input type="checkbox" id="check-2-1" class="peer sr-only" onchange="toggleTask('2.1')">
-                                    <div class="w-6 h-6 border-2 border-slate-500 rounded-md bg-slate-900 peer-checked:bg-emerald-500 peer-checked:border-emerald-400 flex items-center justify-center transition-all duration-200 shadow-inner">
-                                        <i class="fa-solid fa-check text-xs text-white opacity-0 peer-checked:opacity-100 transition-opacity duration-200"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-[10px] font-extrabold px-1.5 py-0.5 bg-slate-800 text-emerald-400 rounded border border-slate-700 uppercase tracking-wider">Aksi 2.1</span>
-                                    </div>
-                                    <p class="text-sm text-slate-300 font-medium mt-1.5 group-hover:text-white leading-relaxed">
-                                        Saya menerapkan rumus 3S (Sadari, Stop, Stabilkan) dengan mengambil jeda minimal 3 detik saat menerima interupsi mendadak atau komplain.
-                                    </p>
-                                </div>
-                            </label>
-
-                            <!-- ITEM 2.2 -->
-                            <label class="group flex items-start gap-4 p-4 rounded-xl bg-slate-800/40 border border-slate-700 cursor-pointer hover:bg-slate-800 hover:border-emerald-500/50 transition-all duration-200 glow-effect">
-                                <div class="relative flex items-center mt-0.5">
-                                    <input type="checkbox" id="check-2-2" class="peer sr-only" onchange="toggleTask('2.2')">
-                                    <div class="w-6 h-6 border-2 border-slate-500 rounded-md bg-slate-900 peer-checked:bg-emerald-500 peer-checked:border-emerald-400 flex items-center justify-center transition-all duration-200 shadow-inner">
-                                        <i class="fa-solid fa-check text-xs text-white opacity-0 peer-checked:opacity-100 transition-opacity duration-200"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-[10px] font-extrabold px-1.5 py-0.5 bg-slate-800 text-emerald-400 rounded border border-slate-700 uppercase tracking-wider">Aksi 2.2</span>
-                                    </div>
-                                    <p class="text-sm text-slate-300 font-medium mt-1.5 group-hover:text-white leading-relaxed">
-                                        Saya memberikan respons balik dengan nada suara yang datar, objektif, dan profesional tanpa bumbu emosi atau sindiran.
-                                    </p>
-                                </div>
-                            </label>
-
-                        </div>
-                    </div>
-
+                <div>
+                    <p class="stat-val" id="streak-txt">0 Hari</p>
+                    <p class="stat-lbl">Target 100%</p>
                 </div>
-
             </div>
-
         </div>
 
-        <!-- FLOATING CONTROL & SUMMARY EXPORTS -->
-        <footer class="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-2">
-                <button onclick="openModal()" class="px-5 py-3 rounded-xl bg-slate-800 text-slate-400 font-bold hover:bg-slate-700 hover:text-white transition-colors flex items-center gap-2 w-full sm:w-auto justify-center">
-                    <i class="fa-solid fa-arrows-rotate"></i> Reset Roadmap
-                </button>
+        <div class="badges-section">
+            <h3>🎖️ Lencana Pencapaian Praktik</h3>
+            
+            <div id="badge-1" class="badge-item">
+                <div class="badge-icon">📡</div>
+                <div class="badge-info"><p>Radar Emosi Aktif</p><span>Sadar tanda fisik & jeda napas rutin</span></div>
             </div>
-            <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                <button onclick="salinProgress()" class="px-5 py-3 rounded-xl bg-slate-800 text-sky-400 font-bold hover:bg-sky-900/30 border border-slate-600 hover:border-sky-500/50 flex items-center gap-2 justify-center transition-all">
-                    <i class="fa-solid fa-copy"></i> Salin Progress
-                </button>
-                <button onclick="cetakHalaman()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-sky-600 to-blue-700 text-white font-extrabold hover:from-sky-500 hover:to-blue-600 shadow-lg shadow-sky-600/25 transition-all flex items-center gap-2 justify-center">
-                    <i class="fa-solid fa-print"></i> Ekspor PDF
-                </button>
+            <div id="badge-2" class="badge-item">
+                <div class="badge-icon">🧼</div>
+                <div class="badge-info"><p>Agen Tangan Dingin</p><span>Selesai tanpa bersikap kasar fisik</span></div>
             </div>
-        </footer>
+            <div id="badge-3" class="badge-item">
+                <div class="badge-icon">⏱️</div>
+                <div class="badge-info"><p>Master 3 Detik</p><span>Disiplin rumus 3S & respon tenang</span></div>
+            </div>
+        </div>
 
+        <div class="tabs-grid">
+            <button onclick="switchDay('Senin')" id="tab-Senin" class="tab-btn active">Senin<span id="dot-Senin" class="day-dot"></span></button>
+            <button onclick="switchDay('Selasa')" id="tab-Selasa" class="tab-btn">Selasa<span id="dot-Selasa" class="day-dot"></span></button>
+            <button onclick="switchDay('Rabu')" id="tab-Rabu" class="tab-btn">Rabu<span id="dot-Rabu" class="day-dot"></span></button>
+            <button onclick="switchDay('Kamis')" id="tab-Kamis" class="tab-btn">Kamis<span id="dot-Kamis" class="day-dot"></span></button>
+            <button onclick="switchDay('Jumat')" id="tab-Jumat" class="tab-btn">Jumat<span id="dot-Jumat" class="day-dot"></span></button>
+        </div>
+
+        <div class="misi-card">
+            <div class="misi-card-header">
+                <span style="font-weight: 700; font-size: 14px;">Misi Hari <span id="day-title" style="color: #38bdf8;">Senin</span></span>
+                <span id="day-pct" style="font-size: 12px; color: #94a3b8; font-weight: bold;">0% Selesai</span>
+            </div>
+
+            <p class="sector-title">Sektor 1: Meredam Efek Domino (IP 1.1)</p>
+            
+            <label class="checklist-row">
+                <input type="checkbox" id="check-1-1" onchange="toggleTask('1.1')">
+                <span class="box-indicator"></span>
+                <span class="item-text">Saya mengenali tanda fisik tubuh saat emosi negatif muncul (seperti napas memburu atau otot menegang) ketika menghadapi kendala operasional.</span>
+            </label>
+            
+            <label class="checklist-row">
+                <input type="checkbox" id="check-1-2" onchange="toggleTask('1.2')">
+                <span class="box-indicator"></span>
+                <span class="item-text">Saya berhasil menahan diri dari tindakan fisik yang reaktif atau kasar (seperti meletakkan barang dengan keras) saat merasa kesal.</span>
+            </label>
+            
+            <label class="checklist-row">
+                <input type="checkbox" id="check-1-3" onchange="toggleTask('1.3')">
+                <span class="box-indicator"></span>
+                <span class="item-text">Saya mempraktikkan teknik "Jeda Napas" (menarik napas dalam sebanyak 3 kali) sebelum merespons rekan kerja/pelanggan saat situasi tegang.</span>
+            </label>
+
+            <p class="sector-title emerald">Sektor 2: Jeda 3 Detik (IP 1.2)</p>
+
+            <label class="checklist-row emerald-row">
+                <input type="checkbox" id="check-2-1" onchange="toggleTask('2.1')">
+                <span class="box-indicator"></span>
+                <span class="item-text">Saya menerapkan rumus 3S (Sadari, Stop, Stabilkan) dengan mengambil jeda minimal 3 detik saat menerima interupsi mendadak atau komplain.</span>
+            </label>
+            
+            <label class="checklist-row emerald-row">
+                <input type="checkbox" id="check-2-2" onchange="toggleTask('2.2')">
+                <span class="box-indicator"></span>
+                <span class="item-text">Saya memberikan respons balik dengan nada suara yang datar, objektif, dan profesional tanpa bumbu emosi atau sindiran.</span>
+            </label>
+        </div>
+
+        <div class="footer-actions">
+            <button onclick="openModal()" class="btn btn-reset">Reset</button>
+            <button onclick="salinProgress()" class="btn btn-save" style="background-color: #334155; color: #38bdf8; border: 1px solid #475569;">Salin Progress</button>
+            <button onclick="window.print()" class="btn btn-save">Cetak PDF</button>
+        </div>
+
+        <footer class="copyright">
+            © 2026 Education & Training Department • PT Indomarco Prismatama
+        </footer>
     </div>
 
-    <!-- MAIN JAVASCRIPT LOGIC -->
     <script>
-        // Gunakan key localstorage baru agar tidak bentrok dengan versi gunung sebelumnya
-        const STORAGE_KEY = 'eds_roadmap_checklist_ip1_v4';
-
+        const KEY = 'eds_production_final_v4';
         let state = {
             activeDay: 'Senin',
             data: {
@@ -384,267 +493,113 @@
                 'Jumat':   { '1.1': false, '1.2': false, '1.3': false, '2.1': false, '2.2': false }
             }
         };
-
         const days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
 
         window.onload = function() {
             try {
-                const savedState = localStorage.getItem(STORAGE_KEY);
-                if (savedState) {
-                    state = JSON.parse(savedState);
-                }
-            } catch (e) {
-                // Ignore iframe sandbox limitations
-            }
-
+                const local = localStorage.getItem(KEY);
+                if (local) state = JSON.parse(local);
+            } catch (e) {}
             switchDay(state.activeDay || 'Senin');
-            updateGlobalStats();
+            updateGlobal();
         };
 
-        function saveState() {
-            try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-            } catch (e) {}
+        function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast-alert');
+            t.innerText = msg; t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 2500);
         }
 
-        // Custom Notification Toast System (Safe inside iFrames)
-        function showNotification(message, type = 'info') {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = `p-4 rounded-xl shadow-lg border text-sm font-bold flex items-center gap-3 transition-all duration-300 transform translate-y-2 opacity-0 pointer-events-auto min-w-[300px] `;
-            
-            if (type === 'success') {
-                toast.className += 'bg-emerald-950/90 border-emerald-500 text-emerald-300';
-                toast.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i> <span>${message}</span>`;
-            } else if (type === 'reset') {
-                toast.className += 'bg-slate-900 border-slate-700 text-slate-300';
-                toast.innerHTML = `<i class="fa-solid fa-arrows-rotate text-slate-400 text-lg"></i> <span>${message}</span>`;
-            } else {
-                toast.className += 'bg-sky-950/90 border-sky-500 text-sky-300';
-                toast.innerHTML = `<i class="fa-solid fa-circle-info text-sky-400 text-lg"></i> <span>${message}</span>`;
-            }
-
-            container.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.classList.remove('translate-y-2', 'opacity-0');
-            }, 10);
-
-            setTimeout(() => {
-                toast.classList.add('translate-y-2', 'opacity-0');
-                setTimeout(() => { toast.remove(); }, 300);
-            }, 3000);
-        }
-
-        // Custom Dialog Modal Controllers (Anti-block on iFrames)
-        function openModal() {
-            const modal = document.getElementById('custom-modal');
-            modal.classList.add('opacity-100', 'pointer-events-auto');
-            modal.querySelector('div').classList.remove('scale-90');
-            modal.querySelector('div').classList.add('scale-100');
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('custom-modal');
-            modal.classList.remove('opacity-100', 'pointer-events-auto');
-            modal.querySelector('div').classList.remove('scale-100');
-            modal.querySelector('div').classList.add('scale-90');
-        }
-
+        function openModal() { document.getElementById('reset-modal').classList.add('show'); }
+        function closeModal() { document.getElementById('reset-modal').classList.remove('show'); }
+        
         function confirmReset() {
-            state.data = {
-                'Senin':   { '1.1': false, '1.2': false, '1.3': false, '2.1': false, '2.2': false },
-                'Selasa':  { '1.1': false, '1.2': false, '1.3': false, '2.1': false, '2.2': false },
-                'Rabu':    { '1.1': false, '1.2': false, '1.3': false, '2.1': false, '2.2': false },
-                'Kamis':   { '1.1': false, '1.2': false, '1.3': false, '2.1': false, '2.2': false },
-                'Jumat':   { '1.1': false, '1.2': false, '1.3': false, '2.1': false, '2.2': false }
-            };
-            
-            saveState();
-            switchDay('Senin');
-            updateGlobalStats();
-            closeModal();
-            showNotification('Peta jalan berhasil disetel ulang.', 'reset');
+            days.forEach(d => { state.data[d] = { '1.1': false, '1.2': false, '1.3': false, '2.1': false, '2.2': false }; });
+            save(); switchDay('Senin'); updateGlobal(); closeModal();
+            showToast('Misi lapangan berhasil disetel ulang!');
         }
 
-        // Switch Day Tabs
         function switchDay(day) {
-            state.activeDay = day;
-            saveState();
-
+            state.activeDay = day; save();
             days.forEach(d => {
-                const btn = document.getElementById(`tab-${d}`);
-                const dot = document.getElementById(`dot-${d}`);
-                
-                if (d === day) {
-                    btn.className = "py-3 px-1 text-center font-bold text-sm rounded-xl transition-all duration-200 bg-sky-600 text-white shadow-[0_4px_12px_rgba(2,132,199,0.3)] border border-sky-500";
-                } else {
-                    btn.className = "py-3 px-1 text-center font-bold text-sm rounded-xl transition-all duration-200 bg-slate-800 text-slate-400 hover:bg-slate-700/80 border border-transparent";
-                }
+                document.getElementById(`tab-${d}`).className = (d === day) ? "tab-btn active" : "tab-btn";
             });
-
-            document.getElementById('active-day-title').innerText = day;
-            
+            document.getElementById('day-title').innerText = day;
             document.getElementById('check-1-1').checked = state.data[day]['1.1'];
             document.getElementById('check-1-2').checked = state.data[day]['1.2'];
             document.getElementById('check-1-3').checked = state.data[day]['1.3'];
             document.getElementById('check-2-1').checked = state.data[day]['2.1'];
             document.getElementById('check-2-2').checked = state.data[day]['2.2'];
-
-            updateDayProgressLabel(day);
+            updateDayLabel(day);
         }
 
-        function toggleTask(taskId) {
-            const day = state.activeDay;
-            const checked = document.getElementById(`check-${taskId.replace('.', '-')}`).checked;
-            
-            state.data[day][taskId] = checked;
-            saveState();
-
-            updateDayProgressLabel(day);
-            updateGlobalStats();
-            showNotification('Tugas lapangan diperbarui!', 'info');
+        function toggleTask(id) {
+            state.data[state.activeDay][id] = document.getElementById(`check-${id.replace('.','-')}`).checked;
+            save(); updateDayLabel(state.activeDay); updateGlobal();
+            showToast('Progres berhasil direkam!');
         }
 
-        function updateDayProgressLabel(day) {
-            const dayData = state.data[day];
-            const checkedCount = Object.values(dayData).filter(val => val).length;
-            const percentage = Math.round((checkedCount / 5) * 100);
-            
-            document.getElementById('day-completion-rate').innerText = `${percentage}% Selesai`;
+        function updateDayLabel(day) {
+            const count = Object.values(state.data[day]).filter(v => v).length;
+            const pct = Math.round((count / 5) * 100);
+            document.getElementById('day-pct').innerText = `${pct}% Selesai`;
             
             const dot = document.getElementById(`dot-${day}`);
-            if (percentage === 100) {
-                dot.className = "block mx-auto mt-1 w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]";
-            } else if (percentage > 0) {
-                dot.className = "block mx-auto mt-1 w-2.5 h-2.5 rounded-full bg-sky-400";
-            } else {
-                dot.className = "block mx-auto mt-1 w-2 h-2 rounded-full bg-slate-500/50";
-            }
+            dot.style.backgroundColor = (pct === 100) ? "#34d399" : (pct > 0 ? "#38bdf8" : "#475569");
         }
 
-        function updateGlobalStats() {
-            let totalChecked = 0;
-            let streakDays = 0;
-            
-            // Badges Verification (5 days consistency check)
-            let all_sadar = true;      
-            let all_tangandingin = true; 
-            let all_zenmaster = true;    
+        function updateGlobal() {
+            let total = 0, streaks = 0;
+            let b1 = true, b2 = true, b3 = true;
 
-            days.forEach(day => {
-                const dayData = state.data[day];
-                const dayChecked = Object.values(dayData).filter(val => val).length;
-                totalChecked += dayChecked;
-
-                if (dayChecked === 5) {
-                    streakDays++;
-                }
-
-                if (!dayData['1.1'] || !dayData['1.3']) all_sadar = false;
-                if (!dayData['1.2']) all_tangandingin = false;
-                if (!dayData['2.1'] || !dayData['2.2']) all_zenmaster = false;
+            days.forEach(d => {
+                const dData = state.data[d];
+                const c = Object.values(dData).filter(v => v).length;
+                total += c;
+                if (c === 5) streaks++;
+                if (!dData['1.1'] || !dData['1.3']) b1 = false;
+                if (!dData['1.2']) b2 = false;
+                if (!dData['2.1'] || !dData['2.2']) b3 = false;
             });
 
-            const overallPercentage = Math.round((totalChecked / 25) * 100);
+            const totalPct = Math.round((total / 25) * 100);
+            document.getElementById('total-checked').innerText = `${total}/25`;
+            document.getElementById('percent-txt').innerText = `${totalPct}%`;
+            document.getElementById('roadmap-fill').style.width = `${totalPct}%`;
+            document.getElementById('avatar-node').style.left = `${totalPct}%`;
+            document.getElementById('streak-txt').innerText = `${streaks} Hari`;
 
-            document.getElementById('total-checked-count').innerText = `${totalChecked}/25`;
-            document.getElementById('overall-percentage').innerText = `${overallPercentage}%`;
-            document.getElementById('overall-progress-bar').style.width = `${overallPercentage}%`;
-            document.getElementById('current-streak').innerText = `${streakDays} Hari`;
+            const rank = document.getElementById('rank-title');
+            if(totalPct === 100) { rank.innerText = "Master Kendali Diri 🏆"; rank.style.color = "#34d399"; }
+            else if(totalPct >= 70) { rank.innerText = "Agen Ahli 🛡️"; rank.style.color = "#38bdf8"; }
+            else if(totalPct >= 40) { rank.innerText = "Agen Siaga ⚡"; rank.style.color = "#60a5fa"; }
+            else if(totalPct >= 10) { rank.innerText = "Agen Pemula 🔍"; rank.style.color = "#94a3b8"; }
+            else { rank.innerText = "Pra-Misi (Belum Mulai) 📋"; rank.style.color = "#475569"; }
 
-            // Align Agent position offset smoothly across the track
-            const avatar = document.getElementById('agent-avatar');
-            avatar.style.left = `${overallPercentage}%`;
-
-            // Node Highlighting along the roadmap
-            document.getElementById('node-1').className = overallPercentage >= 33 
-                ? "absolute left-[33%] w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.8)] transition-all duration-500" 
-                : "absolute left-[33%] w-2 h-2 rounded-full bg-slate-600 border border-slate-400 transition-all duration-500";
-                
-            document.getElementById('node-2').className = overallPercentage >= 66 
-                ? "absolute left-[66%] w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.8)] transition-all duration-500" 
-                : "absolute left-[66%] w-2 h-2 rounded-full bg-slate-600 border border-slate-400 transition-all duration-500";
-                
-            document.getElementById('node-3').className = overallPercentage === 100 
-                ? "absolute right-0 w-3 h-3 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)] transition-all duration-500" 
-                : "absolute right-0 w-3 h-3 rounded-full bg-slate-600 border-2 border-slate-400 transition-all duration-500";
-
-            // Ranks Mapping (Roadmap / Agent Theme)
-            const rankLabel = document.getElementById('rank-title');
-            if (overallPercentage === 100) {
-                rankLabel.innerText = "Master Kendali Diri 🏆";
-                rankLabel.className = "text-emerald-400 font-extrabold";
-            } else if (overallPercentage >= 70) {
-                rankLabel.innerText = "Pengendali Ahli 🛡️";
-                rankLabel.className = "text-sky-300 font-bold";
-            } else if (overallPercentage >= 40) {
-                rankLabel.innerText = "Agen Siaga ⚡";
-                rankLabel.className = "text-blue-300 font-semibold";
-            } else if (overallPercentage >= 15) {
-                rankLabel.innerText = "Agen Pemula 🔍";
-                rankLabel.className = "text-slate-300 font-medium";
-            } else {
-                rankLabel.innerText = "Pra-Misi (Belum Mulai) 📋";
-                rankLabel.className = "text-slate-500 font-medium";
-            }
-
-            // Unlock Badges
-            updateBadgeUI('badge-radar', all_sadar);
-            updateBadgeUI('badge-tangandingin', all_tangandingin);
-            updateBadgeUI('badge-zenmaster', all_zenmaster);
-
-            days.forEach(d => updateDayProgressLabel(d));
-        }
-
-        function updateBadgeUI(badgeId, isUnlocked) {
-            const badge = document.getElementById(badgeId);
-            if (isUnlocked) {
-                badge.classList.remove('opacity-40');
-                badge.classList.add('bg-sky-900/40', 'border-sky-500/40', 'shadow-[0_0_15px_rgba(14,165,233,0.15)]', 'scale-[1.02]');
-            } else {
-                badge.classList.add('opacity-40');
-                badge.classList.remove('bg-sky-900/40', 'border-sky-500/40', 'shadow-[0_0_15px_rgba(14,165,233,0.15)]', 'scale-[1.02]');
-            }
+            document.getElementById('badge-1').className = b1 ? "badge-item unlocked" : "badge-item";
+            document.getElementById('badge-2').className = b2 ? "badge-item unlocked" : "badge-item";
+            document.getElementById('badge-3').className = b3 ? "badge-item unlocked" : "badge-item";
+            
+            days.forEach(d => updateDayLabel(d));
         }
 
         function salinProgress() {
-            let totalChecked = 0;
-            days.forEach(d => {
-                totalChecked += Object.values(state.data[d]).filter(val => val).length;
-            });
-            const pct = Math.round((totalChecked / 25) * 100);
-
-            let txt = `### EDS (MISI 1): ROADMAP KENDALI DIRI\n📍 Progress Pencapaian: ${pct}% (${totalChecked}/25 Tugas Selesai)\n`;
-
-            txt += `\n**Detail Penyelesaian Harian:**\n`;
+            let total = 0; days.forEach(d => total += Object.values(state.data[d]).filter(v => v).length);
+            let txt = `### EDS (MISI 1): ROADMAP KENDALI DIRI\n📍 Progress Pencapaian: ${Math.round((total/25)*100)}% (${total}/25 Misi Lapangan Selesai)\n\n**Detail Penyelesaian Harian:**\n`;
             days.forEach(day => {
-                txt += `- ${day}: `;
-                let done = [];
-                if(state.data[day]['1.1']) done.push("Sadar Fisik (1.1)");
-                if(state.data[day]['1.2']) done.push("Tahan Fisik Kasar (1.2)");
-                if(state.data[day]['1.3']) done.push("Jeda Napas (1.3)");
-                if(state.data[day]['2.1']) done.push("Rumus 3S (2.1)");
-                if(state.data[day]['2.2']) done.push("Respon Profesional (2.2)");
-                txt += done.length > 0 ? done.join(', ') : 'Belum praktek';
-                txt += `\n`;
+                let d = [];
+                if(state.data[day]['1.1']) d.push("Sadar Fisik");
+                if(state.data[day]['1.2']) d.push("Tahan Reaksi");
+                if(state.data[day]['1.3']) d.push("Jeda Napas");
+                if(state.data[day]['2.1']) d.push("Rumus 3S");
+                if(state.data[day]['2.2']) d.push("Respon Datar");
+                txt += `- ${day}: ${d.length > 0 ? d.join(', ') : 'Belum praktek'}\n`;
             });
-
-            const textArea = document.createElement("textarea");
-            textArea.value = txt;
-            document.body.appendChild(textArea);
-            textArea.select();
-            try {
-                document.execCommand('copy');
-                showNotification('Progres disalin! Siap dikirim ke WhatsApp Group.', 'success');
-            } catch (err) {
-                showNotification('Gagal menyalin progres.', 'info');
-            }
-            document.body.removeChild(textArea);
-        }
-
-        function cetakHalaman() {
-            window.print();
+            const ta = document.createElement("textarea"); ta.value = txt; document.body.appendChild(ta); ta.select();
+            try { document.execCommand('copy'); showToast('Laporan progres berhasil disalin ke WhatsApp!'); } catch (e) {}
+            document.body.removeChild(ta);
         }
     </script>
 </body>
