@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misi 1 EDS - Roadmap Kendali Diri</title>
+    <style>
+        /* ==========================================================================
+           CSS INTERNAL PREMIUM - GABUNGAN DESIGN DARK MODE (100% OFFLINE & FIXED)
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #020617;
+            color: #f1f5f9;
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #0f172a;
+            border-radius: 20px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            padding: 24px;
+            border: 1px solid #1e293b;
+        }
+
+        /* Header Area */
+        .main-header {
+            border-bottom: 1px solid #334155;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .badge-eds {
+            background-color: rgba(14, 165, 233, 0.15);
+            color: #38bdf8;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .badge-target {
+            background-color: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .badge-misi {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .main-header h1 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .main-header .sub-info {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+
+        /* Banner Instruksi */
+        .instruction-banner {
+            background-color: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #cbd5e1;
+        }
+
+        .instruction-banner b {
+            color: #38bdf8;
+        }
+
+        /* Progress Dashboard */
+        .progress-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .progress-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        /* Track Peta Jalan */
+        .roadmap-track {
+            height: 8px;
+            background-color: #0f172a;
+            border-radius: 9999px;
+            position: relative;
+            margin: 15px 0;
+            border: 1px solid #334155;
+        }
+
+        .roadmap-fill {
+            height: 100%;
+            background: linear-gradient(to right, #38bdf8, #34d399);
+            border-radius: 9999px;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .agent-node {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 28px;
+            height: 28px;
+            background-color: #38bdf8;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+            transition: left 0.4s ease;
+            z-index: 10;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            border-top: 1px solid #334155;
+            padding-top: 12px;
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        .stat-val { font-size: 20px; font-weight: 800; color: #ffffff; }
+        .stat-lbl { font-size: 11px; color: #94a3b8; text-transform: uppercase; }
+
+        /* Lencana Lencana */
+        .badges-section {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .badges-section h3 { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: #ffffff;}
+
+        .badge-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgba(15, 23, 42, 0.4);
+            margin-bottom: 8px;
+            border: 1px solid transparent;
+            opacity: 0.4;
+            transition: all 0.3s;
+        }
+
+        .badge-item.unlocked {
+            opacity: 1;
+            border-color: rgba(56, 189, 248, 0.3);
+            background-color: rgba(14, 165, 233, 0.05);
+        }
+
+        .badge-icon {
+            width: 36px;
+            height: 36px;
+            background-color: #0f172a;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .badge-info p { font-size: 13px; font-weight: 700; color: #f1f5f9; }
+        .badge-info span { font-size: 11px; color: #94a3b8; }
+
+        /* Tab Hari */
+        .tabs-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            color: #94a3b8;
+            padding: 10px 4px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background-color: #0284c7;
+            color: #ffffff;
+            border-color: #38bdf8;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+        }
+
+        .day-dot {
+            display: block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #475569;
+            margin: 4px auto 0 auto;
+        }
+
+        /* Misi Checklist Card */
+        .misi-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .misi-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 10px;
+            margin-bottom: 16px;
+        }
+
+        .sector-title {
+            font-size: 12px;
+            font-weight: 800;
+            color: #38bdf8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 14px 0 8px 0;
+        }
+        .sector-title.emerald { color: #34d399; }
+
+        .checklist-row {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px;
+            background-color: rgba(15, 23, 42, 0.3);
+            border: 1px solid #334155;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .checklist-row:hover { background-color: rgba(15, 23, 42, 0.6); }
+
+        .checklist-row input { position: absolute; opacity: 0; }
+
+        .box-indicator {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #64748b;
+            border-radius: 4px;
+            margin-right: 12px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .checklist-row input:checked ~ .box-indicator {
+            background-color: #0284c7;
+            border-color: #38bdf8;
+        }
+        
+        .checklist-row.emerald-row input:checked ~ .box-indicator {
+            background-color: #059669;
+            border-color: #34d399;
+        }
+
+        .box-indicator:after {
+            content: "✓";
+            position: absolute;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            top: -2px;
+            left: 2px;
+            display: none;
+        }
+
+        .checklist-row input:checked ~ .box-indicator:after { display: block; }
+
+        .item-text { font-size: 13px; color: #cbd5e1; line-height: 1.4; }
+        .checklist-row input:checked ~ .item-text { color: #64748b; text-decoration: line-through; }
+
+        /* Footer & Buttons */
+        .footer-actions { display: flex; gap: 10px; margin-top: 20px; }
+        .btn {
+            flex: 1; padding: 12px; font-size: 13px; font-weight: 700; border-radius: 10px;
+            border: none; cursor: pointer; text-align: center; text-transform: uppercase;
+        }
+        .btn-reset { background-color: #334155; color: #94a3b8; }
+        .btn-reset:hover { background-color: #475569; color: white; }
+        .btn-save { background-color: #0284c7; color: white; }
+        .btn-save:hover { background-color: #0369a1; }
+
+        .copyright { text-align: center; margin-top: 24px; font-size: 11px; color: #64748b; border-top: 1px solid #334155; padding-top: 12px; }
+
+        /* Modal Kustom */
+        .modal-bg { position: fixed; inset: 0; background-color: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s; z-index: 100; padding: 16px;}
+        .modal-bg.show { opacity: 1; pointer-events: auto; }
+        .modal-content { background-color: #1e293b; border: 1px solid #334155; padding: 20px; border-radius: 16px; max-width: 360px; text-align: center; }
+
+        /* Toast */
+        .toast-box { position: fixed; bottom: 20px; left: 50%; transform: translate(-50%, 100px); background-color: #1e293b; border: 1px solid #334155; padding: 10px 20px; font-size: 12px; font-weight: 700; color: #38bdf8; border-radius: 8px; transition: 0.3s; opacity: 0; z-index: 200; }
+        .toast-box.show { transform: translate(-50%, 0); opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <!-- Dialog Box Reset Kustom -->
+    <div id="reset-modal" class="modal-bg">
+        <div class="modal-content">
+            <p style="font-size: 16px; font-weight: 800; margin-bottom: 8px;">Reset Peta Jalan Misi?</p>
+            <p style="font-size: 13px; color: #94a3b8; margin-bottom: 20px;">Apakah Anda yakin ingin menghapus catatan kemajuan latihan kompetensi minggu ini?</p>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="closeModal()" class="btn btn-reset" style="padding: 8px;">Batal</button>
+                <button onclick="confirmReset()" class="btn" style="background-color: #ef4444; color: white; padding: 8px;">Ya, Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Alert Kustom -->
+    <div id="toast-alert" class="toast-box">Progres lapangan berhasil diperbarui!</div>
+
+    <div class="app-container">
+        
+        <!-- HEADER UTAMA -->
+        <header class="main-header">
+            <div class="badge-row">
+                <span class="badge-eds">Employee Development Series (EDS)</span>
+                <span class="badge-target">Target: Clerk / Sr. Clerk</span>
+                <span class="badge-misi">Misi 1</span>
+            </div>
+            <h1>Peta Jalan Kendali Diri</h1>
+            <p class="sub-info"><b>Kompetensi: Pengendalian Diri</b> — "Menyadari dan menanggapi situasi biasa tanpa menunjukkan emosi berlebihan"</p>
+        </header>
+
+        <!-- PETUNJUK -->
+        <div class="instruction-banner">
+            💡 <b>Petunjuk Action Learning (Praktek Lapangan):</b><br>
+            Centang tugas harian di bawah ini <u>HANYA JIKA</u> Anda telah benar-benar berhasil mempraktikkannya secara nyata saat bertugas / bekerja di toko, office, pabrik, gudang DC dll. hari ini.
+        </div>
+
+        <!-- DASHBOARD PROGRESS MAP -->
+        <div class="progress-card">
+            <div class="progress-meta">
+                <span id="rank-title" style="color: #38bdf8;">Pra-Misi (Belum Mulai)</span>
+                <span id="percent-txt">0%</span>
+            </div>
+            
+            <div class="roadmap-track">
+                <div id="roadmap-fill" class="roadmap-fill"></div>
+                <div id="avatar-node" class="agent-node" style="left: 0%;">🕵️</div>
+            </div>
+
+            <div class="stats-grid">
+                <div>
+                    <p class="stat-val" id="total-checked">0/25</p>
+                    <p class="stat-lbl">Misi Beres</p>
+                </div>
+                <div>
+                    <p class="stat-val" id="streak-txt">0 Hari</p>
+                    <p class="stat-lbl">Target 100%</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- LENCANA -->
+        <div class="badges-section">
+            <h3>🎖️ Lencana Pencapaian Praktik</h3>
+            
+            <div id="badge-1" class="badge-item">
+                <div class="badge-icon">📡</div>
+                <div class="badge-info"><p>Radar Emosi Aktif</p><span>Sadar tanda fisik & jeda napas rutin</span></div>
+            </div>
+            <div id="badge-2" class="badge-item">
+                <div class="badge-icon">🧼</div>
+                <div class="badge-info"><p>Agen Tangan Dingin</p><span>Selesai tanpa bersikap kasar fisik</span></div>
+            </div>
+            <div id="badge-3" class="badge-item">
+                <div class="badge-icon">⏱️</div>
+                <div class="badge-info"><p>Master 3 Detik</p><span>Disiplin rumus 3S & respon tenang</span></div>
+            </div>
+        </div>
+
+        <!-- TAB HARI (HARI 1 - HARI 5) -->
+        <div class="tabs-grid">
+            <button onclick="switchDay('Hari 1')" id="tab-Hari_1" class="tab-btn active">Hari 1<span id="dot-Hari_1" class="day-dot"></span></button>
+            <button onclick="switchDay('Hari 2')" id="tab-Hari_2" class="tab-btn">Hari 2<span id="dot-Hari_2" class="day-dot"></span></button>
+            <button onclick="switchDay('Hari 3')" id="tab-Hari_3" class="tab-btn">Hari 3<span id="dot-Hari_3" class="day-dot"></span></button>
+            <button onclick="switchDay('Hari 4')" id="tab-Hari_4" class="tab-btn">Hari 4<span id="dot-Hari_4" class="day-dot"></span></button>
+            <button onclick="switchDay('Hari 5')" id="tab-Hari_5" class="tab-btn">Hari 5<span id="dot-Hari_5" class="day-dot"></span></button>
+        </div>
+
+        <!-- MONITOR BOARD -->
+        <div class="misi-card">
+            <div class="misi-card-header">
+                <span style="font-weight: 700; font-size: 14px;">Misi <span id="day-title" style="color: #38bdf8;">Hari 1</span></span>
+                <span id="day-pct" style="font-size: 12px; color: #94a3b8; font-weight: bold;">0% Selesai</span>
+            </div>
+
+            <p class="sector-title">Sektor 1: Meredam Efek Domino (IP 1.1)</p>
+            
+            <label class="checklist-row">
+                <input type="checkbox" id="check-1-1" onchange="toggleTask('1.1')">
+                <span class="box-indicator"></span>
+                <span class="item-text">Saya mengenali tanda fisik tubuh saat emosi negatif muncul (seperti napas memburu atau otot menegang) ketika menghadapi kendala operasional.</span>
+            </label>
+            
+            <label class="checklist-row">
+                <input type="checkbox" id="check-1-2" onchange="toggleTask('1.2')">
+                <span class="box-indicator"></span>
+                <span class="item-text">Saya berhasil menahan diri dari tindakan fisik yang reaktif atau kasar (seperti meletakkan barang dengan keras) saat merasa kesal.</span>
+            </label>
+            
+            <label class="checklist-row">
+                <input type="checkbox" id="check-1-3" onchange="toggleTask('1.3')">
+                <span class="box-indicator"></span>
+                <span class="item-text">Saya mempraktikkan teknik "Jeda Napas" (menarik napas dalam sebanyak 3 kali) sebelum merespons rekan kerja/pelanggan saat situasi tegang.</span>
+            </label>
+
+            <p class="sector-title emerald">Sektor 2: Jeda 3 Detik (IP 1.2)</p>
+
+            <label class="checklist-row emerald-row">
+                <input type="checkbox" id="check-2-1" onchange="toggleTask('2.1')">
+                <span class="box-indicator"></span>
+                <span class="item-text">Saya menerapkan rumus 3S (Sadari, Stop, Stabilkan) dengan mengambil jeda minimal 3 detik saat menerima interupsi mendadak atau komplain.</span>
+            </label>
+            
+            <label class="checklist-row emerald-row">
+                <input type="checkbox" id="check-2-2" onchange="toggleTask('2.2')">
+                <span class="box-indicator"></span>
+                <span class="item-text">Saya memberikan respons balik dengan nada suara yang datar, objektif, dan profesional tanpa bumbu emosi atau sindiran.</span>
+            </label>
+        </div>
+
+        <!-- ACTION CONTROLS -->
+        <div class="footer-actions">
+            <button onclick="openModal()" class="btn btn-reset">Reset</button>
+            <button onclick="salinProgress()" class="btn btn-save" style="background-color: #334155; color: #38bdf8; border: 1px solid #475569;">Salin Progress</button>
+            <button onclick="window.print()" class="btn btn-save">Cetak PDF</button>
+        </div>
+
+        <footer class="copyright">
+            © 2026 Education & Training Department • PT Indomarco Prismatama
+        </footer>
+    </div>
+
+    <!-- LOGIKA CORE CONTROLLER -->
+    <script>
+        const KEY = 'eds_production_final_v5';
+        let state = {
+            activeDay: 'Hari 1',
+            data: {
+                'Hari 1':   { '1.1': false, '1.2': false, '1.3': false, '2.1': false, '2.2': false },
+                'Hari 2':  { '1.1': false, '1.2': false, '1.3': false, '2.1': false, '2.2': false },
+                'Hari 3':    { '1.1': false, '1.2': false, '1.3': false, '2.1': false, '2.2': false },
+                'Hari 4':   { '1.1': false, '1.2': false, '1.3': false, '2.1': false, '2.2': false },
+                'Hari 5':   { '1.1': false, '1.2': false, '1.3': false, '2.1': false, '2.2': false }
+            }
+        };
+        const days = ['Hari 1', 'Hari 2', 'Hari 3', 'Hari 4', 'Hari 5'];
+
+        window.onload = function() {
+            try {
+                const local = localStorage.getItem(KEY);
+                if (local) state = JSON.parse(local);
+            } catch (e) {}
+            switchDay(state.activeDay || 'Hari 1');
+            updateGlobal();
+        };
+
+        function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast-alert');
+            t.innerText = msg; t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 2500);
+        }
+
+        function openModal() { document.getElementById('reset-modal').classList.add('show'); }
+        function closeModal() { document.getElementById('reset-modal').classList.remove('show'); }
+        
+        function confirmReset() {
+            days.forEach(d => { state.data[d] = { '1.1': false, '1.2': false, '1.3': false, '2.1': false, '2.2': false }; });
+            save(); switchDay('Hari 1'); updateGlobal(); closeModal();
+            showToast('Misi lapangan berhasil disetel ulang!');
+        }
+
+        function switchDay(day) {
+            state.activeDay = day; save();
+            days.forEach(d => {
+                const safeId = d.replace(' ', '_');
+                document.getElementById(`tab-${safeId}`).className = (d === day) ? "tab-btn active" : "tab-btn";
+            });
+            document.getElementById('day-title').innerText = day;
+            document.getElementById('check-1-1').checked = state.data[day]['1.1'];
+            document.getElementById('check-1-2').checked = state.data[day]['1.2'];
+            document.getElementById('check-1-3').checked = state.data[day]['1.3'];
+            document.getElementById('check-2-1').checked = state.data[day]['2.1'];
+            document.getElementById('check-2-2').checked = state.data[day]['2.2'];
+            updateDayLabel(day);
+        }
+
+        function toggleTask(id) {
+            state.data[state.activeDay][id] = document.getElementById(`check-${id.replace('.','-')}`).checked;
+            save(); updateDayLabel(state.activeDay); updateGlobal();
+            showToast('Progres berhasil direkam!');
+        }
+
+        function updateDayLabel(day) {
+            const count = Object.values(state.data[day]).filter(v => v).length;
+            const pct = Math.round((count / 5) * 100);
+            document.getElementById('day-pct').innerText = `${pct}% Selesai`;
+            
+            const safeId = day.replace(' ', '_');
+            const dot = document.getElementById(`dot-${safeId}`);
+            dot.style.backgroundColor = (pct === 100) ? "#34d399" : (pct > 0 ? "#38bdf8" : "#475569");
+        }
+
+        function updateGlobal() {
+            let total = 0, streaks = 0;
+            let b1 = true, b2 = true, b3 = true;
+
+            days.forEach(d => {
+                const dData = state.data[d];
+                const c = Object.values(dData).filter(v => v).length;
+                total += c;
+                if (c === 5) streaks++;
+                if (!dData['1.1'] || !dData['1.3']) b1 = false;
+                if (!dData['1.2']) b2 = false;
+                if (!dData['2.1'] || !dData['2.2']) b3 = false;
+            });
+
+            const totalPct = Math.round((total / 25) * 100);
+            document.getElementById('total-checked').innerText = `${total}/25`;
+            document.getElementById('percent-txt').innerText = `${totalPct}%`;
+            document.getElementById('roadmap-fill').style.width = `${totalPct}%`;
+            document.getElementById('avatar-node').style.left = `${totalPct}%`;
+            document.getElementById('streak-txt').innerText = `${streaks} Hari`;
+
+            const rank = document.getElementById('rank-title');
+            if(totalPct === 100) { rank.innerText = "Master Kendali Diri 🏆"; rank.style.color = "#34d399"; }
+            else if(totalPct >= 70) { rank.innerText = "Agen Ahli 🛡️"; rank.style.color = "#38bdf8"; }
+            else if(totalPct >= 40) { rank.innerText = "Agen Siaga ⚡"; rank.style.color = "#60a5fa"; }
+            else if(totalPct >= 10) { rank.innerText = "Agen Pemula 🔍"; rank.style.color = "#94a3b8"; }
+            else { rank.innerText = "Pra-Misi (Belum Mulai) 📋"; rank.style.color = "#475569"; }
+
+            document.getElementById('badge-1').className = b1 ? "badge-item unlocked" : "badge-item";
+            document.getElementById('badge-2').className = b2 ? "badge-item unlocked" : "badge-item";
+            document.getElementById('badge-3').className = b3 ? "badge-item unlocked" : "badge-item";
+            
+            days.forEach(d => updateDayLabel(d));
+        }
+
+        function salinProgress() {
+            let total = 0; days.forEach(d => total += Object.values(state.data[d]).filter(v => v).length);
+            let txt = `### EDS (MISI 1): ROADMAP KENDALI DIRI\n📍 Progress Pencapaian: ${Math.round((total/25)*100)}% (${total}/25 Misi Lapangan Selesai)\n\n**Detail Penyelesaian Harian:**\n`;
+            days.forEach(day => {
+                let d = [];
+                if(state.data[day]['1.1']) d.push("Sadar Fisik");
+                if(state.data[day]['1.2']) d.push("Tahan Reaksi");
+                if(state.data[day]['1.3']) d.push("Jeda Napas");
+                if(state.data[day]['2.1']) d.push("Rumus 3S");
+                if(state.data[day]['2.2']) d.push("Respon Datar");
+                txt += `- ${day}: ${d.length > 0 ? d.join(', ') : 'Belum praktek'}\n`;
+            });
+            const ta = document.createElement("textarea"); ta.value = txt; document.body.appendChild(ta); ta.select();
+            try { document.execCommand('copy'); showToast('Laporan progres berhasil disalin ke WhatsApp!'); } catch (e) {}
+            document.body.removeChild(ta);
+        }
+    </script>
+</body>
+</html>
