@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Action Learning Checklist - Indomaret Group</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="logo-area">
+                <span class="badge-etd">ETD DEPARTEMENT</span>
+            </div>
+            <h1>ACTION LEARNING CHECKLIST</h1>
+            <p class="subtitle">Misi 1: Pengendalian Diri & Efek Domino (IP 1.1 & IP 1.2)</p>
+        </header>
+
+        <!-- Progress Bar -->
+        <div class="progress-section">
+            <div class="progress-info">
+                <span>Progres Praktik Lapangan</span>
+                <span id="progress-text">0% Selesai</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div id="progress-fill" class="progress-bar-fill" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <!-- Checklist Card 1 -->
+        <div class="card">
+            <div class="card-header bg-blue">
+                <h2>Indikator Perilaku 1.1: Efek Domino Emosi</h2>
+            </div>
+            <div class="card-body">
+                <label class="checklist-item">
+                    <input type="checkbox" class="task-checkbox" onclick="updateProgress()">
+                    <span class="custom-checkbox"></span>
+                    <span class="item-text">Saya menyadari munculnya emosi negatif (kesal/kecewa) saat menghadapi kendala kerja sebelum merespons rekan setim.</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" class="task-checkbox" onclick="updateProgress()">
+                    <span class="custom-checkbox"></span>
+                    <span class="item-text">Saya berhasil menahan diri untuk tidak melakukan tindakan reaktif (seperti menggebrak meja atau meletakkan barang dengan keras).</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" class="task-checkbox" onclick="updateProgress()">
+                    <span class="custom-checkbox"></span>
+                    <span class="item-text">Saya mempraktikkan teknik "Jeda Napas" (menarik napas dalam-dalam 3 kali) saat emosi mulai meningkat di area kerja.</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Checklist Card 2 -->
+        <div class="card">
+            <div class="card-header bg-green">
+                <h2>Indikator Perilaku 1.2: Teknik Jeda 3 Detik</h2>
+            </div>
+            <div class="card-body">
+                <label class="checklist-item">
+                    <input type="checkbox" class="task-checkbox" onclick="updateProgress()">
+                    <span class="custom-checkbox"></span>
+                    <span class="item-text">Saya menerapkan rumus 3S (Sadari, Stop, Stabilkan) selama minimal 3 detik sebelum menjawab interupsi atau chat yang memicu stres.</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" class="task-checkbox" onclick="updateProgress()">
+                    <span class="custom-checkbox"></span>
+                    <span class="item-text">Saya memberikan respons dengan kalimat yang jelas, objektif, dan profesional tanpa bumbu sindiran atau nada ketus.</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-area">
+            <button class="btn btn-secondary" onclick="resetChecklist()">Reset Progress</button>
+            <button class="btn btn-primary" onclick="saveToLMS()">Simpan Progres</button>
+        </div>
+
+        <footer class="app-footer">
+            <p>© 2026 Education & Training Department • PT Indomarco Prismatama</p>
+        </footer>
+    </div>
+
+    <script>
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('.task-checkbox');
+            const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const totalCount = checkboxes.length;
+            const percentage = Math.round((checkedCount / totalCount) * 100);
+            
+            document.getElementById('progress-fill').style.width = percentage + '%';
+            document.getElementById('progress-text').innerText = percentage + '% Selesai';
+            
+            // Save state to local storage for offline continuity
+            const state = Array.from(checkboxes).map(cb => cb.checked);
+            localStorage.setItem('lms_checklist_misi1', JSON.stringify(state));
+        }
+
+        function resetChecklist() {
+            if(confirm('Apakah Anda ingin mengulang pengisian checklist praktik dari awal?')) {
+                const checkboxes = document.querySelectorAll('.task-checkbox');
+                checkboxes.forEach(cb => cb.checked = false);
+                updateProgress();
+            }
+        }
+
+        function saveToLMS() {
+            alert('Progres praktik mingguan Anda berhasil disimpan secara lokal di Ruang Kerja!');
+        }
+
+        // Load state on startup
+        window.onload = function() {
+            const savedState = localStorage.getItem('lms_checklist_misi1');
+            if (savedState) {
+                const state = JSON.parse(savedState);
+                const checkboxes = document.querySelectorAll('.task-checkbox');
+                checkboxes.forEach((cb, index) => {
+                    if(state[index] !== undefined) cb.checked = state[index];
+                });
+                updateProgress();
+            }
+        }
+    </script>
+</body>
+</html>
